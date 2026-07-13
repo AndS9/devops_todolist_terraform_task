@@ -1,24 +1,27 @@
-variable "prefix" {
-  type    = string
-  default = "myapp"
-}
-
+# COMMON VARIABLES
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
 }
 
-variable "resource_group_location" {
+variable "location" {
   description = "Location of the resource group"
   type        = string
 }
+#______________________________________________________________________________|
 
-variable "network_name" {
+# NETWORK's VARIABLES
+variable "prefix" {
+  type    = string
+  default = "myapp"
+}
+
+variable "virtual_network_name" {
   description = "Name of the virtual network"
   type        = string
   default     = "vnet"
 }
-variable "v_net_address_prefix" {
+variable "vnet_address_prefix" {
   description = "Virtual network address prefix"
   type        = list(string)
   default     = ["10.0.0.0/16"]
@@ -34,7 +37,7 @@ variable "subnet_address_prefix" {
   type        = list(string)
   default     = ["10.0.0.0/24"]
 }
-variable "pip_name" {
+variable "public_ip_address_name" {
   description = "Name of the puplic ip resource"
   type        = string
   default     = "linuxboxpip"
@@ -44,7 +47,7 @@ variable "dns_label" {
   type        = string
   default     = "matetask"
 }
-variable "network_SG_name" {
+variable "network_security_group_name" {
   description = "Name of Network Security Group"
   type        = string
   default     = "defaultnsg"
@@ -88,4 +91,6 @@ variable "security_rules" {
     }
   ]
 }
+#______________________________________________________________________________|
+
 

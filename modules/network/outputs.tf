@@ -4,6 +4,6 @@ output "Virtal_network_id" {
 output "Public_IP" {
     value = azurerm_public_ip.mainIP.ip_address
 }
-output "Pulibc Domain"{
+output "Public_domain" {
     value = azurerm_public_ip.mainIP.domain_name_label
 }
