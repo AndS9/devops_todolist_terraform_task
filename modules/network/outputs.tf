@@ -1,9 +1,11 @@
-output "Virtal_network_id" {
-    value = azurerm_virtual_network.main.id
+output "subnet_id" {
+    value = azurerm_subnet.internal.id
 }
-output "Public_IP" {
-    value = azurerm_public_ip.mainIP.ip_address
+
+output "public_ip_id" {
+    value = azurerm_public_ip.mainIP.id
 }
-output "Public_domain" {
-    value = azurerm_public_ip.mainIP.domain_name_label
+
+output "NSG_id" {
+    value = azurerm_network_security_group.main.id
 }

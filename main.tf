@@ -35,3 +35,16 @@ module "network" {
   network_SG_name         = var.network_security_group_name
   security_rules          = var.security_rules
 }
+module "compute" {
+  source                  = "./modules/compute"
+  resource_group_name     = var.resource_group_name
+  resource_group_location = var.location
+  vm_name                 = var.vm_name
+  vm_size                 = var.vm_size
+  subnet_id               = module.network.subnet_id
+  public_ip_id            = module.network.public_ip_id
+  NSG_id                  = module.network.NSG_id
+  extension_name          = "CustomScript"
+  path_to_script          = "install-app.sh"
+  SSH_key                 = "linuxboxsshkey"
+}

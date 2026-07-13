@@ -88,9 +88,31 @@ variable "security_rules" {
       destination_port_range     = "80"
       source_address_prefix      = "*"
       destination_address_prefix = "*"
+    },
+    {
+      name                       = "HTTP-app"
+      priority                   = 300
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*"
+      destination_port_range     = "8080"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
     }
   ]
 }
 #______________________________________________________________________________|
 
-
+# VIRTUAL MACHINE VARIABLES
+variable "vm_name" {
+  description = "Virtual Machine Name"
+  type        = string
+  default     = "matebox"
+}
+variable "vm_size" {
+  description = "Size of VM"
+  type        = string
+  default     = "Standard_D2s_v3"
+}
+#______________________________________________________________________________|
