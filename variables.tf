@@ -2,20 +2,17 @@
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
+  default     = "mate-azure-task-12"
 }
 
 variable "location" {
   description = "Location of the resource group"
   type        = string
+  default     = "uksouth"
 }
 #______________________________________________________________________________|
 
 # NETWORK's VARIABLES
-variable "prefix" {
-  type    = string
-  default = "myapp"
-}
-
 variable "virtual_network_name" {
   description = "Name of the virtual network"
   type        = string
@@ -113,6 +110,6 @@ variable "vm_name" {
 variable "vm_size" {
   description = "Size of VM"
   type        = string
-  default     = "Standard_D2s_v3"
+  default     = "Standard_B1s"
 }
 #______________________________________________________________________________|

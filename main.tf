@@ -23,7 +23,6 @@ resource "random_string" "suffix" {
 }
 module "network" {
   source                  = "./modules/network"
-  prefix                  = var.prefix
   resource_group_name     = var.resource_group_name
   resource_group_location = var.location
   network_name            = var.virtual_network_name
