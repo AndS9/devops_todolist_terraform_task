@@ -15,7 +15,7 @@ output "public_domain" {
   value = module.network.public_domain
 }
 output "vm_ip_config" {
-  value = module.compute.ip_configuration
+  value = module.compute.vm_public_ip_address
 }
 
 output "container_taskartifacts_id" {

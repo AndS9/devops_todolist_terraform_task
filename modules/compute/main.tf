@@ -23,43 +23,38 @@ resource "azurerm_ssh_public_key" "example" {
   public_key          = file("~/.ssh/id_rsa.pub")
 }
 
-resource "azurerm_virtual_machine" "main" {
+resource "azurerm_linux_virtual_machine" "main" {
   name                  = var.vm_name
   location              = var.resource_group_location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.main.id]
-  vm_size               = var.vm_size
+  size               = var.vm_size
   
-  storage_image_reference {
+
+  admin_username = "testadmin"
+  disable_password_authentication = true
+  computer_name = "todoapp-host"
+  source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts"
     version   = "latest"
   }
-  storage_os_disk {
-    name              = "myosdisk1"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+  os_disk {
+    name                 = "myosdisk1"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
-  os_profile {
-    computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
-  }
-  os_profile_linux_config {
-    disable_password_authentication = false
-
-    ssh_keys {
-      path = "/home/testadmin/.ssh/authorized_keys"
-      key_data = azurerm_ssh_public_key.example.public_key
-    }
+  
+  admin_ssh_key {
+    username   = "testadmin"
+    public_key = azurerm_ssh_public_key.example.public_key
   }
 }
 
 resource "azurerm_virtual_machine_extension" "example" {
   name                 = var.extension_name
-  virtual_machine_id   = azurerm_virtual_machine.main.id
+  virtual_machine_id   = azurerm_linux_virtual_machine.main.id
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.0"

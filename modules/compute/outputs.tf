@@ -1,6 +1,6 @@
 output "vm_id" {
-  value = azurerm_virtual_machine.main.id
+  value = azurerm_linux_virtual_machine.main.id
 }
-output "ip_configuration" {
-    value = azurerm_network_interface.main.ip_configuration
+output "vm_public_ip_address" {
+    value = azurerm_linux_virtual_machine.main.public_ip_address
 }
