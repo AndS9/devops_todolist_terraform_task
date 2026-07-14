@@ -4,8 +4,7 @@ variable "resource_group_name" {
   type        = string
   default     = "mate-azure-task-12"
 }
-
-variable "location" {
+variable "resource_group_location" {
   description = "Location of the resource group"
   type        = string
   default     = "uksouth"
@@ -113,3 +112,9 @@ variable "vm_size" {
   default     = "Standard_B1s"
 }
 #______________________________________________________________________________|
+
+# STORAGE ACCOUNT AND CONTAINER VARIABLES
+variable "storage_account_name" {
+  type    = string
+  default = "ands9prostorrage"
+}

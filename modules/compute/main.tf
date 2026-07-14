@@ -1,12 +1,7 @@
-resource "azurerm_resource_group" "main" {
-  name     = var.resource_group_name
-  location = var.resource_group_location
-}
-
 resource "azurerm_network_interface" "main" {
   name                = "${var.vm_name}-nic"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  location            = var.resource_group_location
+  resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "ip_config"
@@ -23,15 +18,15 @@ resource "azurerm_network_interface_security_group_association" "main" {
 
 resource "azurerm_ssh_public_key" "example" {
   name                = var.SSH_key
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+  resource_group_name = var.resource_group_name
+  location            = var.resource_group_location
   public_key          = file("~/.ssh/id_rsa.pub")
 }
 
 resource "azurerm_virtual_machine" "main" {
   name                  = var.vm_name
-  location              = azurerm_resource_group.main.location
-  resource_group_name   = azurerm_resource_group.main.name
+  location              = var.resource_group_location
+  resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = var.vm_size
   

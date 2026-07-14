@@ -15,16 +15,23 @@ provider "azurerm" {
   features {
 
   }
+  use_oidc = true
 }
 resource "random_string" "suffix" {
   length  = 4
   upper   = false
   special = false
 }
+
+data "azurerm_resource_group" "main" {
+  name = var.resource_group_name
+}
+
+
 module "network" {
   source                  = "./modules/network"
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.location
+  resource_group_name     = data.azurerm_resource_group.main.name
+  resource_group_location = data.azurerm_resource_group.main.location
   network_name            = var.virtual_network_name
   v_net_address_prefix    = var.vnet_address_prefix
   subnet_name             = var.subnet_name
@@ -36,8 +43,8 @@ module "network" {
 }
 module "compute" {
   source                  = "./modules/compute"
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.location
+  resource_group_name     = data.azurerm_resource_group.main.name
+  resource_group_location = data.azurerm_resource_group.main.location
   vm_name                 = var.vm_name
   vm_size                 = var.vm_size
   subnet_id               = module.network.subnet_id
@@ -46,4 +53,11 @@ module "compute" {
   extension_name          = "CustomScript"
   path_to_script          = "install-app.sh"
   SSH_key                 = "linuxboxsshkey"
+}
+module "storage" {
+  source                  = "./modules/storage"
+  resource_group_name     = data.azurerm_resource_group.main.name
+  resource_group_location = data.azurerm_resource_group.main.location
+  storage_account_name    = var.storage_account_name
+  container_name          = "task-artifacts"
 }
