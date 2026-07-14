@@ -11,7 +11,7 @@ variable "resource_group_location" {
 variable "network_name" {
   description = "Name of the virtual network"
   type        = string
-  default = "vnet"
+  default     = "vnet"
 }
 variable "v_net_address_prefix" {
   description = "Virtual network address prefix"
@@ -19,9 +19,9 @@ variable "v_net_address_prefix" {
   default     = ["10.0.0.0/16"]
 }
 variable "subnet_name" {
-    description = "Name of the subnet"
-    type        = string
-    default     = "default"
+  description = "Name of the subnet"
+  type        = string
+  default     = "default"
 }
 
 variable "subnet_address_prefix" {
@@ -37,17 +37,17 @@ variable "pip_name" {
 variable "dns_label" {
   description = "DNS for service"
   type        = string
-  default     = "matetask" 
+  default     = "matetask"
 }
 variable "network_SG_name" {
-    description = "Name of Network Security Group"
-    type        = string
-    default     = "defaultnsg"  
+  description = "Name of Network Security Group"
+  type        = string
+  default     = "defaultnsg"
 }
 
 variable "security_rules" {
   description = "List of security rules for the network security group"
-  type        = list(object({
+  type = list(object({
     name                       = string
     priority                   = number
     direction                  = string

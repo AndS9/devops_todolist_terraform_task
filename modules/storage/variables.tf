@@ -16,6 +16,6 @@ variable "storage_account_name" {
 }
 
 variable "container_name" {
-  type = string
+  type    = string
   default = "storage_container"
 }

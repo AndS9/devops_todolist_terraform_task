@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "ip_config"
-    subnet_id                     =  var.subnet_id
+    subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = var.public_ip_id
   }
@@ -28,12 +28,12 @@ resource "azurerm_linux_virtual_machine" "main" {
   location              = var.resource_group_location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.main.id]
-  size               = var.vm_size
-  
+  size                  = var.vm_size
 
-  admin_username = "testadmin"
+
+  admin_username                  = "testadmin"
   disable_password_authentication = true
-  computer_name = "todoapp-host"
+  computer_name                   = "todoapp-host"
   source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
@@ -45,7 +45,7 @@ resource "azurerm_linux_virtual_machine" "main" {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
-  
+
   admin_ssh_key {
     username   = "testadmin"
     public_key = azurerm_ssh_public_key.example.public_key
