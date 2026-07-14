@@ -62,6 +62,7 @@ module "compute" {
   extension_name          = "CustomScript"
   path_to_script          = "install-app.sh"
   SSH_key                 = "linuxboxsshkey"
+  ssh_public_key_content  = var.ssh_key_public
 }
 module "storage" {
   source                  = "./modules/storage"

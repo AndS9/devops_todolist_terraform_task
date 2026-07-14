@@ -20,7 +20,7 @@ resource "azurerm_ssh_public_key" "example" {
   name                = var.SSH_key
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
-  public_key          = file("${path.module}/../../id_rsa.pub")
+  public_key          = var.ssh_public_key_content
 }
 
 resource "azurerm_linux_virtual_machine" "main" {

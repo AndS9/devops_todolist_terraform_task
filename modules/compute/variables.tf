@@ -49,3 +49,7 @@ variable "SSH_key" {
   type    = string
   default = "linuxboxsshkey"
 }
+
+variable "ssh_public_key_content" {
+  type = string
+}

@@ -111,6 +111,10 @@ variable "vm_size" {
   type        = string
   default     = "Standard_B1s"
 }
+variable "ssh_key_public" {
+  type    = string
+  default = "your-public-key-conten"
+}
 #______________________________________________________________________________|
 
 # STORAGE ACCOUNT AND CONTAINER VARIABLES
