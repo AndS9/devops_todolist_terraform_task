@@ -113,12 +113,16 @@ variable "vm_size" {
 }
 variable "ssh_key_public" {
   type    = string
-  default = "your-public-key-conten"
+  default = "your-public-key-content"
 }
 #______________________________________________________________________________|
 
 # STORAGE ACCOUNT AND CONTAINER VARIABLES
 variable "storage_account_name" {
+  type    = string
+  default = "yourstorageaccount"
+}
+variable "storage_account_name_for_artifacts" {
   type    = string
   default = "ands9prostorrage"
 }

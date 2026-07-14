@@ -19,6 +19,6 @@ module "backend_storage" {
   source                  = "../modules/storage"
   resource_group_name     = azurerm_resource_group.example.name
   resource_group_location = azurerm_resource_group.example.location
-  storage_account_name    = "ands9storageaccount"
+  storage_account_name    = "yourstorageaccount"
   container_name          = "tfstate"
 }

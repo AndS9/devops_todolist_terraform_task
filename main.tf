@@ -68,6 +68,6 @@ module "storage" {
   source                  = "./modules/storage"
   resource_group_name     = data.azurerm_resource_group.main.name
   resource_group_location = data.azurerm_resource_group.main.location
-  storage_account_name    = var.storage_account_name
+  storage_account_name    = var.storage_account_name_for_artifacts
   container_name          = "task-artifacts"
 }
