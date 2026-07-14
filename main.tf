@@ -22,6 +22,15 @@ resource "random_string" "suffix" {
   upper   = false
   special = false
 }
+/*
+I CAN"T USE IT IN MAIN, BECAUSE IT MUST BE CREATED WITH STORAGE ACC
+BEFORE BACKEND for TERRAFORM TO PROPERLY START
+
+resource "azurerm_resource_group" "example" {
+  name     = var.resource_group_name
+  location = var.resource_group_location
+}
+*/
 
 data "azurerm_resource_group" "main" {
   name = var.resource_group_name
